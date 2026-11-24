@@ -11,10 +11,6 @@ npm run login      # otwiera Chrome, zaloguj się ręcznie (SSO SpeakLeash / Goo
 npm test
 ```
 
-Strona stoi za Keycloak SSO (`id.speakleash.org.pl`), a Google blokuje logowanie w przeglądarce
-sterowanej przez Playwright. Dlatego `npm run login` uruchamia zwykłego Chrome i zapisuje sesję
-do `.auth/user.json` (plik jest w `.gitignore`). Sesja wygasa po kilku dniach — gdy test
-`setup` zgłosi „Sesja wygasła”, uruchom `npm run login` jeszcze raz.
 
 ## Struktura
 
@@ -32,3 +28,11 @@ Asercje sprawdzają jednocześnie UI i odpowiedzi API (`/chat/send`, `/guard`, `
 Pliki testowe w `fixtures/` można odtworzyć poleceniem `npm run fixtures` (macOS, głos `Zosia`).
 
 Każdy test tworzy nową rozmowę w historii konta testowego.
+
+## Podgląd testów w przeglądarce
+
+```bash
+npm run test:headed   # widoczne okno Google Chrome, akcje spowolnione o 400 ms
+npm run test:ui       # Playwright UI: lista testów, oś czasu, podgląd każdego kroku
+npm run test:debug    # Playwright Inspector: wykonanie krok po kroku
+```

@@ -2,6 +2,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 export const AUTH_FILE = '.auth/user.json';
 
+// SLOWMO=500 spowalnia każdą akcję (ms), CHROME=1 używa zainstalowanego Google Chrome zamiast Chromium.
+const SLOW_MO_MS = Number(process.env.SLOWMO ?? 0);
+const CHANNEL = process.env.CHROME === '1' ? 'chrome' : undefined;
+
 export default defineConfig({
   testDir: './tests',
   timeout: 4 * 60 * 1000,
@@ -18,6 +22,8 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    channel: CHANNEL,
+    launchOptions: { slowMo: SLOW_MO_MS },
   },
   projects: [
     { name: 'setup', testMatch: /auth\.setup\.ts/, use: { storageState: AUTH_FILE } },

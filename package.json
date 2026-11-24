@@ -8,7 +8,10 @@
     "login": "npx tsx scripts/login.ts",
     "report": "playwright show-report",
     "fixtures": "npx tsx scripts/make-fixtures.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:headed": "CHROME=1 SLOWMO=400 playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "CHROME=1 playwright test --debug"
   },
   "keywords": [],
   "author": "",
