@@ -6,7 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "login": "npx tsx scripts/login.ts",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "fixtures": "npx tsx scripts/make-fixtures.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

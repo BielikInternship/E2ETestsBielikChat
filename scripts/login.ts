@@ -1,12 +1,3 @@
-/**
- * Ręczne logowanie przez prawdziwego Google Chrome (Google blokuje okna sterowane przez Playwright).
- *
- * 1. Uruchamia zwykły Chrome z osobnym profilem (.auth/chrome-profile) i portem debugowania.
- * 2. Użytkownik loguje się ręcznie (Google/GitHub/LinkedIn...).
- * 3. Gdy karta trafi na chat-new.bielik.ai, Playwright podłącza się przez CDP i zapisuje sesję.
- *
- * Uruchomienie: npm run login
- */
 import { chromium, type Browser } from '@playwright/test';
 import { spawn } from 'node:child_process';
 import { writeFile } from 'node:fs/promises';
@@ -73,7 +64,7 @@ async function main(): Promise<void> {
     if (context && page) {
       await page.waitForLoadState('networkidle').catch(() => undefined);
       const state = await context.storageState();
-      // Zapisujemy tylko ciasteczka Bielika/SpeakLeash — bez sesji Google itp.
+      //ciasteczka
       const filtered = {
         cookies: state.cookies.filter((c) => isAllowedDomain(c.domain)),
         origins: state.origins.filter((o) => isAllowedDomain(new URL(o.origin).hostname)),
